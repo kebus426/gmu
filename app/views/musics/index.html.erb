@@ -1,0 +1,18 @@
+<h1>Listing music</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Music</th>
+  </tr>
+
+  <% @music.each do |music| %>
+  <tr>
+    <td><%= music.user_name  %></td>
+    <td><%= music.original_filename  %></td>
+    <td><%= audio_tag('/assets/' + music.file_name, :controls => true) %></td>
+    <td><%= link_to 'Show', music_path(music) %></td>
+  </tr>  
+  <% end %>
+</table> 
+    <td><%= link_to 'New', new_music_path %></td>

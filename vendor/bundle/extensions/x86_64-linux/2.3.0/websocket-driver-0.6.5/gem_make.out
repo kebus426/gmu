@@ -1,0 +1,15 @@
+current directory: /home/kebus/private_html/rails/gmu/vendor/bundle/gems/websocket-driver-0.6.5/ext/websocket-driver
+/usr/bin/ruby2.3 -r ./siteconf20170909-13518-b94ltw.rb extconf.rb
+creating Makefile
+
+current directory: /home/kebus/private_html/rails/gmu/vendor/bundle/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /home/kebus/private_html/rails/gmu/vendor/bundle/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /home/kebus/private_html/rails/gmu/vendor/bundle/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20170909-13518-56xxby

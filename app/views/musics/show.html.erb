@@ -1,0 +1,15 @@
+<p>
+  <strong>User:</strong>
+  <%= @music.user_name %>
+</p>
+ 
+<p>
+  <strong>Music:</strong>
+  <%= puts @music %>
+  <%= @music.original_filename  %>
+  <%= audio_tag('/assets/' + @music.file_name, :controls => true) %>
+</p>
+
+<td><%= link_to 'Back', musics_path %></td>
+<td><%= link_to 'Destroy', music_path(@music),
+                    method: :delete, data: { confirm: 'Are you sure?' } %> </td>

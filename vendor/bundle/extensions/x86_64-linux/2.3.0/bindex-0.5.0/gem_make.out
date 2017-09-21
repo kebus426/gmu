@@ -1,0 +1,15 @@
+current directory: /home/kebus/private_html/rails/gmu/vendor/bundle/gems/bindex-0.5.0/ext/bindex
+/usr/bin/ruby2.3 -r ./siteconf20170909-13518-1bxtdtb.rb extconf.rb
+creating Makefile
+
+current directory: /home/kebus/private_html/rails/gmu/vendor/bundle/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: /home/kebus/private_html/rails/gmu/vendor/bundle/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+compiling cruby.c
+linking shared-object bindex/cruby.so
+
+current directory: /home/kebus/private_html/rails/gmu/vendor/bundle/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20170909-13518-1d1tcn2/bindex
