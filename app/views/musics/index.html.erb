@@ -8,9 +8,10 @@
 
   <% @music.each do |music| %>
   <tr>
-    <td><%= music.user_name  %></td>
+    <%= puts music %>
+    <td><%= link_to music.user_name, :controller => 'users', :action => 'show', :id => 1, :user => music.user_name  %></td>
     <td><%= music.original_filename  %></td>
-    <td><%= audio_tag('/assets/' + music.file_name, :controls => true) %></td>
+    <td><%= audio_tag('/assets/' + music.user_name + '/' + music.file_name, :controls => true) %></td>
     <td><%= link_to 'Show', music_path(music) %></td>
   </tr>  
   <% end %>

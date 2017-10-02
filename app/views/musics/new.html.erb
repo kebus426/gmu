@@ -2,7 +2,7 @@
 
 <h1>New Music</h1>
 
-<%= form_for :music, url: musics_path do |f| %>
+<%= form_for :music, url: user_musics_path do |f| %>
   <p>
     <%= f.label :user %><br>
     <%= f.text_field :user %>
@@ -20,5 +20,5 @@
 
 <% end %>
 
-<td><%= link_to 'Back', musics_path %></td>
+<td><%= link_to 'Back', home_path %></td>
     

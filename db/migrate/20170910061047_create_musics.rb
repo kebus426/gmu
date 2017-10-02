@@ -4,6 +4,9 @@ class CreateMusics < ActiveRecord::Migration[5.1]
       t.string :user_name 
       t.string :original_filename
       t.text   :file_name
+
+      t.references :user, index: true
+      
       t.timestamps
     end
   end
