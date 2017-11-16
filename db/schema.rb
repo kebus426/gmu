@@ -10,21 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930154444) do
-
-  create_table "musics", force: :cascade do |t|
-    t.string "user_name", null: false
-    t.string "original_filename", null: false
-    t.text "file_name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "upload_date", default: "-4712-01-01 00:00:00", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "user_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20171116054702) do
 
 end

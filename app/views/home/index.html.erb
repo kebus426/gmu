@@ -1,19 +1,13 @@
-<h1>Listing music</h1>
+<% provide(:title, "Index") %>
+<div class="center jumbotron">
+  <h1>Welcome to the Sample App</h1>
+    <h2>
+      This is the home page for the
+      <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
+      sample application.
+    </h2>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+</div>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Music</th>
-  </tr>
-
-  <% @music.each do |music| %>
-  <tr>
-    <%= puts music %>
-    <td><%= link_to music.user_name, :controller => 'users', :action => 'show', :id => 1, :user => music.user_name  %></td>
-    <td><%= music.original_filename  %></td>
-    <td><%= audio_tag('/assets/' + music.user_name + '/' + music.file_name, :controls => true) %></td>
-    <td><%= link_to 'Show', user_music_path(music.user,music[:id]) %></td>
-  </tr>  
-  <% end %>
-</table> 
-    <td><%= link_to 'New', new_home_path %></td>
+<%= link_to image_tag("rails.png", alt: "Rails logo"),
+    'http://rubyonrails.org/' %>
