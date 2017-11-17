@@ -1,0 +1,19 @@
+current directory: /home/kebus/private_html/rails/gmu/vendor/bundle/gems/bcrypt-3.1.11/ext/mri
+/usr/bin/ruby2.3 -r ./siteconf20171116-23845-f0q2uc.rb extconf.rb
+creating Makefile
+
+current directory: /home/kebus/private_html/rails/gmu/vendor/bundle/gems/bcrypt-3.1.11/ext/mri
+make "DESTDIR=" clean
+
+current directory: /home/kebus/private_html/rails/gmu/vendor/bundle/gems/bcrypt-3.1.11/ext/mri
+make "DESTDIR="
+compiling bcrypt_ext.c
+compiling crypt.c
+compiling crypt_blowfish.c
+compiling crypt_gensalt.c
+compiling wrapper.c
+linking shared-object bcrypt_ext.so
+
+current directory: /home/kebus/private_html/rails/gmu/vendor/bundle/gems/bcrypt-3.1.11/ext/mri
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bcrypt_ext.so ./.gem.20171116-23845-1i5lydz
