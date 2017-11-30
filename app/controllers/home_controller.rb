@@ -1,6 +1,9 @@
+# coding: utf-8
 class HomeController < ApplicationController
   def index
- # @music = Music.all
+    @musics = Music.limit(5).includes(:user) if logged_in?
+    puts "homecontroller\n"
+    puts "homecontroller2\n"
   end
 
   def about

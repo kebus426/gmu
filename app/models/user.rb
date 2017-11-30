@@ -1,12 +1,16 @@
 # coding: utf-8
 class User < ApplicationRecord
+  has_many :musics, dependent: :destroy
   attr_accessor :remember_token
-  validates :name,
+  validates :user_name,
             presence: true,
             length: { maximum: 50},
             uniqueness: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
+  has_many :favorites, class_name: "Favorite", foreign_key: :user_id
+  has_many :fav_musics, through: :favorites
 
   #渡された文字列のハッシュ値を返す
   def User.digest(string)

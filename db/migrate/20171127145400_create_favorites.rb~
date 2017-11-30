@@ -1,0 +1,10 @@
+class CreateFavorites < ActiveRecord::Migration[5.1]
+  def change
+    create_table :favorites do |t|
+
+      t.timestamps
+    end
+    add_index :favorites, :user_id
+    add_index :favorites, :event_id
+  end
+end

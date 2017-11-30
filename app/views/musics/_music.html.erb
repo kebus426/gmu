@@ -1,0 +1,8 @@
+<li id="music-<%= music.id %>">
+  <span class="music_name"><%= link_to music.music_name, music_path(music.id) %></span>
+  
+  <span class="caption"><%= music.caption %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(music.created_at) %> ago.
+  </span>
+</li>

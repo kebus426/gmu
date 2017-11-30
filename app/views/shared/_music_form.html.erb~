@@ -1,0 +1,18 @@
+
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@music) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+    
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :caption %>
+      <%= f.text_area :caption, class: 'form-control'%>
+
+      <%= f.label :file %>
+      <%= f.file_field :file, class: 'form-control'%>
+
+      <%= f.submit "アップロード", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+

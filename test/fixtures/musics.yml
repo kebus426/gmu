@@ -1,11 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  caption: MyText
+  music_name: "one"
+  caption: "MyText"
   user: one
+  created_at: <%= 10.minutes.ago %>
 
 two:
-  name: MyString
-  caption: MyText
+  music_name: "two"
+  caption: "YourText"
   user: two
+  created_at: <%= 3.years.ago %>
+
+three:
+  music_name: "three"
+  caption: "3"
+  user: three
+  created_at: <%= 2.hours.ago %>
+
+most_recent:
+  music_name: "four"
+  caption: "4"
+  user: two
+  created_at: <%= Time.zone.now %>
+  

@@ -1,0 +1,15 @@
+<% provide(:title, "Bookmark") %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class= "musics">
+      <% @musics.each do |music|%>
+      <div class= "box">
+	<p><%= link_to music.music_name, music_path(music.id) %></p>
+	<p><%= link_to music.user_name, user_path(music.user_id) %></p>
+	<p><%= audio_tag(music.file.url , :controls => true)%></p>
+        <p>投稿日：<%= music.created_at %></p>
+	</div>
+      <% end %>
+    </div>
+  </div>
+</div>

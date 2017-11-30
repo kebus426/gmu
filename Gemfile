@@ -18,6 +18,8 @@ gem 'jquery-rails'
 gem 'bcrypt', '3.1.11'
 #
 gem 'rails-controller-testing'
+#便利アップローダー
+gem 'carrierwave'
 #
 gem 'bootstrap-sass', '3.3.7'
 gem 'will_paginate',           '3.1.5'

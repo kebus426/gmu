@@ -1,23 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 michael:
-  name: Michael Example
+  user_name: Michael Example
   password_digest: <%= User.digest('password') %>
 
 archer:
-  name: Sterling Archer
+  user_name: Sterling Archer
   password_digest: <%= User.digest('password') %>
 
 lana:
-  name: Lana Kane
+  user_name: Lana Kane
   password_digest: <%= User.digest('password') %>
 
 malory:
-  name: Malory Archer
+  user_name: Malory Archer
   password_digest: <%= User.digest('password') %>
 
 <% 30.times do |n| %>
 user_<%= n %>:
-  name:  <%= "User #{n}" %>
+  user_name:  <%= "User #{n}" %>
   password_digest: <%= User.digest('password') %>
 <% end %>

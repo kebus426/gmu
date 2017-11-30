@@ -5,7 +5,7 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
-    @user = User.new(name: "Example User",
+    @user = User.new(user_name: "Example User",
                      password: "foobar", password_confirmation: "foobar")
   end
   
@@ -31,6 +31,14 @@ class UserTest < ActiveSupport::TestCase
 
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?('')
+  end
+
+  test "associated musics should be destroyed" do
+    @user.save
+    @user.musics.create!(music_name: "Lorem ipsum", file: File.new("file.wav"))
+    assert_difference 'Music.count', -1 do
+      @user.destroy
+    end
   end
   
 end
