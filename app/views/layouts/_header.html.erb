@@ -7,6 +7,7 @@
             <li><%= link_to "Help",   help_path %></li>
 	    <% if logged_in? %>
 	    <li><%= link_to "Users", users_path %></li>
+	    <li><%= link_to "Musics", musics_path %></li>
 	    <li><%= link_to "Upload", new_music_path %></li>
 	    <li><%= link_to "Bookmark", bookmark_user_path(current_user) %></li>
             <li class="dropdown">

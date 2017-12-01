@@ -16,5 +16,13 @@
 	<% end %>
       </div>
     </div>
+    <div class= "comments">
+      <%= @comments.each do |comment| %>
+      <p><%= render 'shared/comment_show', object: comment %></p>
+      <% end %>
+      <%= form_for(@comment) do |comment| %>
+      <%= render 'shared/comment_form', object: comment %>
+      <% end %>
+    </div>
   </div>
 </div>

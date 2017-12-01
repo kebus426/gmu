@@ -1,7 +1,8 @@
 # coding: utf-8
 class User < ApplicationRecord
   has_many :musics, dependent: :destroy
-  attr_accessor :remember_token
+  has_many :comments, dependent: :destroy
+    attr_accessor :remember_token
   validates :user_name,
             presence: true,
             length: { maximum: 50},

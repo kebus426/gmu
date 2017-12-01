@@ -1,7 +1,7 @@
 <% provide(:title, 'Users') %>
 <h1>ユーザー一覧</h1>
 
-<div class="col-mid-6 col-md-offset-6">
+<div class="col-mid-3">
 <%= form_tag("/user_search", method: "get") do %>
 <%= label_tag(:word, "ユーザー名") %>
 <%@search_word = '' if @search_word == nil%>

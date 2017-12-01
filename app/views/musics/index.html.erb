@@ -1,0 +1,21 @@
+<% provide(:title, 'Musics') %>
+<h1>曲一覧</h1>
+<div class = "row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_tag("/music_search", method: "get") do %>
+    <%= label_tag(:music_name, "曲名") %>
+    <%@search_music = '' if @search_music == nil%>
+    <%= text_field_tag :music_name, @search_word %>
+    <%= label_tag(:user_name, "ユーザー") %>
+    <%@search_user = '' if @search_user == nil%>
+    <%= text_field_tag :user_name, @search_word %>
+    <%= submit_tag("検索") %>
+    <% end %>
+  </div>
+</div>
+
+  
+
+<%= render 'shared/music_show' %>
+
+

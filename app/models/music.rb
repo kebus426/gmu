@@ -9,4 +9,6 @@ class Music < ApplicationRecord
 
   has_many :favorites, class_name: "Favorite", foreign_key: :music_id
   has_many :faved_users, through: :favorites
+
+  has_many :comments, dependent: :destroy
 end
