@@ -21,16 +21,26 @@ class FavoritesController < ApplicationController
   def destroy
     @favorite = Favorite.find_by(user_id: current_user.id, music_id: params[:id] )
     if @favorite.destroy
-      redirect_to bookmark_user_path(current_user)
+      flash[:success] = 'ふぁぼを解除しました'
+      path = Rails.application.routes.recognize_path(request.referer)
+      if path[:controller] == 'favorites'
+        redirect_to bookmark_user_path(current_user.id)
+      else
+        redirect_to music_path(params[:id])
+      end
     else
-      flash[:danger] = '削除できませんでした'
-      redirect_to bookmark_user_path(current_user)
+      flash[:danger] = 'ふぁぼを解除出来ませんでした'
+      if path[:controller] == 'favorites'
+        redirect_to bookmark_user_path(current_user.id)
+      else
+        redirect_to music_path(params[:id])
+      end
     end
   end
 
   def show
     if logged_in?
-      @musics = Music.joins(:user).joins(:favorites).where(favorites: {user_id: current_user.id}).select("users.*, musics.*")#Favorite.where(user_id: current_user.id).joins(:fav_music).select("favorites.*, musics.*").all
+      @musics = Music.joins(:user).joins(:favorites).where(favorites: {user_id: current_user.id}).select("users.*, musics.*").includes(:user)#Favorite.where(user_id: current_user.id).joins(:fav_music).select("favorites.*, musics.*").all
     else
       redirect_to login_path
     end

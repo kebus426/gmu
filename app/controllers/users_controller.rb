@@ -38,6 +38,13 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+
+  def search
+    @users = User.where("user_name LIKE ?", "%#{params[:word]}%").paginate(page: params[:page])
+    puts params[:word]
+    @search_word = params[:word]
+    render 'index'
+  end
   
   private
   

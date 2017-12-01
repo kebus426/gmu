@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130052546) do
+ActiveRecord::Schema.define(version: 20171130184049) do
 
   create_table "favorites", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20171130052546) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"
+    t.index ["music_name"], name: "index_musics_on_music_name", unique: true
     t.index ["user_id", "created_at"], name: "index_musics_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_musics_on_user_id"
   end

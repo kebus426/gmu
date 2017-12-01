@@ -1,6 +1,14 @@
-<% provide(:title, 'All users') %>
-<h1>All users</h1>
+<% provide(:title, 'Users') %>
+<h1>ユーザー一覧</h1>
 
+<div class="col-mid-6 col-md-offset-6">
+<%= form_tag("/user_search", method: "get") do %>
+<%= label_tag(:word, "ユーザー名") %>
+<%@search_word = '' if @search_word == nil%>
+  <%= text_field_tag :word, @search_word %>
+  <%= submit_tag("検索") %>
+  <% end %>
+</div>
 <%= will_paginate %>
 
 <ul class="users">

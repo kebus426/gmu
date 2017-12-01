@@ -35,6 +35,6 @@ class MusicsController < ApplicationController
   private
 
     def music_params
-      params.require(:musics).permit(:id, :music_name, :file, :caption, :user_id)
+      params.require(:music).permit(:music_name, :file, :caption)
     end
 end

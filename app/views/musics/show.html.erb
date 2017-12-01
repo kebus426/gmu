@@ -9,8 +9,11 @@
         <p>投稿日：<%= @music.created_at %></p>
       </div>
       <div>
+	<% if ! @is_faved %>
 	<%= link_to "ブックマークする", add_music_path(@music), method: :post, class: "btn btn-lg btn-primary" %>
+	<%  else %>
 	<%= link_to "ブックマークから外す", delete_music_path(@music), method: :delete, class: "btn btn-lg btn-primary" %>
+	<% end %>
       </div>
     </div>
   </div>

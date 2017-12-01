@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'home#contact'
 
   get  '/signup',  to: 'users#new'
+  get  '/user_search', to: 'users#search'
   resources :users do
     member do
       get 'bookmark', to: 'favorites#show'
