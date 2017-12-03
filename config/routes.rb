@@ -16,17 +16,17 @@ Rails.application.routes.draw do
     end
   end
   
-  
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
-  resources :comments, only: [:create, :destroy]
+
   
   resources :musics, only: [:create, :destroy, :new, :show, :index] do
     member do
       post 'add', to: 'favorites#create'
       delete 'delete', to: 'favorites#destroy'
+      resources :comments, only: [:create, :destroy]
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

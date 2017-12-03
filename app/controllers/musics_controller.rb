@@ -21,11 +21,12 @@ class MusicsController < ApplicationController
   def show
     @music = Music.find(params[:id])
     @is_faved = Music.joins(:user).joins(:favorites).where(favorites: {user_id: current_user.id}).find_by(id: @music.id) != nil
-    @comments = @music.comments.includes(:user).all
-    puts @comments
+    @comments = @music.comments.includes(:user)
+    @comments.each do |c|
+      puts "content"
+      puts c[:content]
+    end
     @comment = @music.comments.build(user_id: current_user.id) if current_user
-    puts "music_showだお"
-    puts @comment.music_id
   end
   
   def new    

@@ -1,13 +1,7 @@
 <% if logged_in? %>
-
-<%= render 'shared/error_messages', object: object.object %>
-
-<%= object.label :comment, "コメント" %>
-<%= object.text_field :content, class: 'form-control' %>
-
-
-<%= object.label :music_id%>
-<%= object.hidden_field  :music_id %>	
-
-<%= object.submit "アップロード", class: "btn btn-primary" %>
-<% end %>
+<div class = "comment_form">
+  <%= object.label :comment, "コメント" %>
+  <%= object.text_field :content, class: 'form-control' %>
+  <%= object.submit "アップロード", class: "btn btn-primary" %>
+  <% end %>
+</div>
