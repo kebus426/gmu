@@ -1,0 +1,109 @@
+have_library: checking for main() in -lgnurx... -------------------- no
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.3.0 -I/usr/include/ruby-2.3.0/ruby/backward -I/usr/include/ruby-2.3.0 -I. -I/opt/local/include -I/usr/local/include -I/usr/include -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -fdebug-prefix-map=/build/ruby2.3-KwDbD6/ruby2.3-2.3.6=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/opt/local/lib -L/usr/local/lib -L/usr/lib -L. -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic     -lruby-2.3  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.3.0 -I/usr/include/ruby-2.3.0/ruby/backward -I/usr/include/ruby-2.3.0 -I. -I/opt/local/include -I/usr/local/include -I/usr/include -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -fdebug-prefix-map=/build/ruby2.3-KwDbD6/ruby2.3-2.3.6=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/opt/local/lib -L/usr/local/lib -L/usr/lib -L. -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic     -lruby-2.3 -lgnurx  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+/usr/bin/ld: -lgnurx が見つかりません
+collect2: error: ld returned 1 exit status
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))main; return !p; }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.3.0 -I/usr/include/ruby-2.3.0/ruby/backward -I/usr/include/ruby-2.3.0 -I. -I/opt/local/include -I/usr/local/include -I/usr/include -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -fdebug-prefix-map=/build/ruby2.3-KwDbD6/ruby2.3-2.3.6=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/opt/local/lib -L/usr/local/lib -L/usr/lib -L. -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic     -lruby-2.3 -lgnurx  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+conftest.c:13:13: error: conflicting types for ‘main’
+ extern void main();
+             ^~~~
+conftest.c:5:5: note: previous definition of ‘main’ was here
+ int main(int argc, char **argv)
+     ^~~~
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: extern void main();
+14: int t(void) { main(); return 0; }
+/* end */
+
+--------------------
+
+have_library: checking for magic_open() in -lmagic... -------------------- no
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.3.0 -I/usr/include/ruby-2.3.0/ruby/backward -I/usr/include/ruby-2.3.0 -I. -I/opt/local/include -I/usr/local/include -I/usr/include -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -fdebug-prefix-map=/build/ruby2.3-KwDbD6/ruby2.3-2.3.6=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/opt/local/lib -L/usr/local/lib -L/usr/lib -L. -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic     -lruby-2.3 -lmagic  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:13:57: error: ‘magic_open’ undeclared (first use in this function); did you mean ‘rb_file_open’?
+ int t(void) { void ((*volatile p)()); p = (void ((*)()))magic_open; return !p; }
+                                                         ^~~~~~~~~~
+                                                         rb_file_open
+conftest.c:13:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))magic_open; return !p; }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.3.0 -I/usr/include/ruby-2.3.0/ruby/backward -I/usr/include/ruby-2.3.0 -I. -I/opt/local/include -I/usr/local/include -I/usr/include -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -fdebug-prefix-map=/build/ruby2.3-KwDbD6/ruby2.3-2.3.6=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L/opt/local/lib -L/usr/local/lib -L/usr/lib -L. -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic     -lruby-2.3 -lmagic  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+/usr/bin/ld: -lmagic が見つかりません
+collect2: error: ld returned 1 exit status
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: extern void magic_open();
+14: int t(void) { magic_open(); return 0; }
+/* end */
+
+--------------------
+

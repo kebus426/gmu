@@ -43,7 +43,7 @@ class AudioFileUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    "something.jpg"
+    #"something.jpg"
     if original_filename.presence
       if File.extname(original_filename) == ".wav"
         "#{Time.zone.now.strftime('%Y%m%d%H%M%S')}.wav"

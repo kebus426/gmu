@@ -1,6 +1,7 @@
 class Music < ApplicationRecord
   belongs_to :user
   mount_uploader :file, AudioFileUploader
+  mount_uploader :artwork, ArtworkUploader
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :file, presence: true
