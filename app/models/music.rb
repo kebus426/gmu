@@ -6,8 +6,8 @@ class Music < ApplicationRecord
   validates :user_id, presence: true
   validates :file, presence: true
   validates :caption, length: { maximum: 140}
-  validates :music_name, presence: true
-
+  validates :music_name, presence: true, uniqueness: false
+  
   has_many :favorites, class_name: "Favorite", foreign_key: :music_id
   has_many :faved_users, through: :favorites
 

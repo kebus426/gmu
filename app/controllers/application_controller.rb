@@ -7,7 +7,13 @@ class ApplicationController < ActionController::Base
   
   private
       # ユーザーのログインを確認する
-    def logged_in_user
+  def logged_in_user
+      puts "remote user"
+      puts request.env["REMOTE_USER"]
+      puts "http"
+      puts request.env["HTTP_X_KMC_REMOTE_USER"]
+      puts request.headers[:REMOTE_USER]
+      
       unless logged_in?
         store_location
         flash[:danger] = "Please log in."
@@ -16,13 +22,16 @@ class ApplicationController < ActionController::Base
     end
 
     def search_id
-      puts "search_id"
-      puts request.env["remote_user"]
-      @user = User.find_by(user_name: request.env["REMOTE_USER"])
-      if @user == nil 
+      @user = User.find_by(user_name: request.env["HTTP_X_KMC_REMOTE_USER"])
+      if @user == nil
+        puts "nildayo"
         @user = User.new(request.env["REMOTE_USER"])
+        if @user == nil
+          puts "user didn't create"
+        end
       else
-#        log_in(@user.id)
+        puts "niljanaiyo"
+        log_in(@user)
       end
     end
 end

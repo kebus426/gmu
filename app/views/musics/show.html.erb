@@ -3,14 +3,13 @@
     <div class= "musics">
       <div class = "box">
 	<p><%= @music.music_name %></p>
+	<div style="text-align:left"><%= link_to @music.user.user_name, user_path(@music.user_id) %></div>	
 	<% if @music.artwork.url.nil? %>
-	<p><%= link_to @music.user.user_name, user_path(@music.user_id) %></p>	
 	<% else %>
-	<p>画像</p>
-	<p><%= image_tag(@music.artwork.url)%><%= link_to @music.user.user_name, user_path(@music.user_id) %></p>
+	<div style="text-align:left"><%= image_tag(@music.artwork.url)%></div>
 	<% end %>
 	<p><%= @music.caption %></p>
-	<p><%= audio_tag( @music.file.url , :controls => true) %></p>
+	<div><%= audio_tag(@music.file.url,:controls => true) %></div>
         <p>投稿日：<%= @music.created_at %></p>
       </div>
       <div>
