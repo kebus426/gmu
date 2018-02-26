@@ -10,9 +10,10 @@ Rails.application.routes.draw do
 #  get  '/signup',  to: 'users#new'
   get  '/user_search', to: 'users#search'
   get  '/music_search', to: 'musics#search'
-  resources :users do
+  resources :users , :except => :edit do
     member do
       get 'bookmark', to: 'favorites#show'
+      
     end
   end
   
