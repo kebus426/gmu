@@ -5,13 +5,13 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(user_name: params[:session][:name])
-    if user && user.authenticate(params[:session][:password])
+    if user 
       log_in user
-      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+      #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_back_or user
     else
-      flash.now[:danger] = 'ユーザー名とパスワードが不適切です'
-      render 'new'
+      redirect_to controller: 'users', action: 'new', user_name: request.env["HTTP_X_KMC_REMOTE_USER"]
+      #render 'new'
     end
   end
 

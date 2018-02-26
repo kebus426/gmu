@@ -1,5 +1,4 @@
 require 'test_helper'
-
 class UsersControllerTest < ActionDispatch::IntegrationTest
 
   def setup
@@ -9,13 +8,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect index when not logged in" do
     get users_path
-    assert_redirected_to login_url
+    assert_response(403)
   end
-    
-  test "should get new" do
-    get signup_url
-    assert_response :success
+  
+  test "should create user when user doesn't exist" do
+    get musics_path
+    log_in_as @user
+    assert_redirected_to(controller: "user")
   end
+  
+#  test "should get new" do
+#    get signup_url
+#    assert_response :success
+#  end
 
   test "should redirect edit when not logged in" do
     get edit_user_path(@user)

@@ -1,8 +1,11 @@
 require 'test_helper'
 class HomeControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  
+  def setup
+    @user = users(:michael)
+    @other_user = users(:archer)
+  end
+
 
   test "should get help" do
     get help_path
