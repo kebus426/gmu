@@ -51,8 +51,7 @@ class UsersController < ApplicationController
      def user_params
        puts params
        puts "user_params"
-        params.require(:user).permit(:user_name, :password,
-                                 :password_confirmation)
+        params.require(:user).permit(:user_name)
       end
 
       def correct_user

@@ -2,22 +2,17 @@
 
 michael:
   user_name: Michael Example
-  password_digest: <%= User.digest('password') %>
 
 archer:
   user_name: Sterling Archer
-  password_digest: <%= User.digest('password') %>
 
 lana:
   user_name: Lana Kane
-  password_digest: <%= User.digest('password') %>
 
 malory:
   user_name: Malory Archer
-  password_digest: <%= User.digest('password') %>
 
 <% 30.times do |n| %>
 user_<%= n %>:
   user_name:  <%= "User #{n}" %>
-  password_digest: <%= User.digest('password') %>
 <% end %>
