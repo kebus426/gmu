@@ -19,6 +19,9 @@
 	<%= link_to "ブックマークから外す", delete_music_path(@music), method: :delete, class: "btn btn-lg btn-primary" %>
 	<% end %>
       </div>
+      <div>
+	<%= render 'shared/slack_form' , object: @music%>
+      </div>
     </div>
     <% @comments.each do |comment| %>
     <%= render 'shared/comment_show', object: comment %>

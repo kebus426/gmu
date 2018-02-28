@@ -1,19 +1,19 @@
 
-  <div class="col-md-6 col-md-offset-3">
+<div class="col-md-12">
     <%= form_for(@music) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
     
-      <%= f.label :music_name %>
-      <%= f.text_field :music_name, class: 'form-control' %>
+      <%= f.label :music_name , "曲名(必須)"%>
+      <%= f.text_field :music_name, class: 'form-control' , :placeholder => "曲名を入力してください" %>
 
-      <%= f.label :caption %>
-      <%= f.text_area :caption, class: 'form-control'%>
+      <%= f.label :caption , "キャプション" %>
+      <%= f.text_area :caption, class: 'form-control', :placeholder => "説明文を入力してください"%>
 
-      <%= f.label :file %>
-      <%= f.file_field :file, class: 'form-control'%>
+      <%= f.label :file , "楽曲ファイル(必須)"%>
+      <%= f.file_field :file, class: 'form-control', :placeholder => "10MBまで投稿できます",accept: 'audio/wav,audio/mp3'%>
 
-      <%= f.label :artwork %>
-      <%= f.file_field :artwork, class: 'form-control'%>
+      <%= f.label :artwork , "アートワーク"%>
+      <%= f.file_field :artwork, class: 'form-control', :placeholder => "適当に圧縮されます",accept: 'image/jpg,image/jpeg,image/png'%>
 
       <%= f.submit "アップロード", class: "btn btn-primary" %>
     <% end %>

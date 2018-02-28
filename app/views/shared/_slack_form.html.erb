@@ -1,0 +1,15 @@
+<% if logged_in? %>
+<div class = "slack_form">
+  <%= form_tag("/godmusicuploader/slack", method: "post") do %>
+  <% if false %>
+  <%= check_box_tag :slack, "slackに投稿する", true%>
+  <% end  %>
+  <%= label_tag :channel, "投稿先" %>
+  <%= text_field_tag :channel, '',placeholder: 'kmc-dtm' %>
+  <%= label_tag :content, "投稿内容" %>
+  <%= text_field_tag :content , '', class: 'form-control' %>
+  <%= submit_tag "投稿" , class: "btn btn-primary"%>
+  <% end %>
+</div>
+<% end %>
+

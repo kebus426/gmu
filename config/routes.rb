@@ -2,6 +2,8 @@
 # coding: utf-8
 Rails.application.routes.draw do
 
+  get 'slack/new'
+
   root 'home#index'
   get '/help', to: 'home#help'
   get '/about', to: 'home#about'
@@ -21,7 +23,7 @@ Rails.application.routes.draw do
 #  post   '/login',   to: 'sessions#create'
 #  delete '/logout',  to: 'sessions#destroy'
 
-
+   post '/slack', to: 'slack#post'
   
   resources :musics, only: [:create, :destroy, :new, :show, :index] do
     member do

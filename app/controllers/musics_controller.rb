@@ -34,7 +34,7 @@ class MusicsController < ApplicationController
     @musics = Music.paginate(page: params[:page]).includes(:user)
   end
 
-    def search
+  def search
     @musics = Music.where("music_name LIKE ?", "%#{params[:music_name]}%").includes(:user) #if params[:music_name] != nil
     #@musics = @musics.where(users: {"user_name LIKE ?", "%#{params[:user_name]}%"}).includes(:user) if params[:usre_name] != nil
     @search_music = params[:music_name]
