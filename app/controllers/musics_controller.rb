@@ -14,6 +14,7 @@ class MusicsController < ApplicationController
   end
 
   def destroy
+    #曲削除する処理を書く チュートリアルにもあった
   end
 
   def show
