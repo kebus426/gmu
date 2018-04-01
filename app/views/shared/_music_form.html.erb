@@ -2,8 +2,8 @@
     <%= form_for(@music) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
     
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.label :music_name %>
+      <%= f.text_field :music_name, class: 'form-control' %>
 
       <%= f.label :caption %>
       <%= f.text_area :caption, class: 'form-control'%>
