@@ -12,53 +12,52 @@ NULLCMD = :
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /usr/include/ruby-2.3.0
+topdir = /home/kebus/.anyenv/envs/rbenv/versions/2.3.6/include/ruby-2.3.0
 hdrdir = $(topdir)
-arch_hdrdir = /usr/include/x86_64-linux-gnu/ruby-2.3.0
+arch_hdrdir = /home/kebus/.anyenv/envs/rbenv/versions/2.3.6/include/ruby-2.3.0/x86_64-linux
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/usr
-rubysitearchprefix = $(sitearchlibdir)/$(RUBY_BASE_NAME)
-rubyarchprefix = $(archlibdir)/$(RUBY_BASE_NAME)
+prefix = $(DESTDIR)/home/kebus/.anyenv/envs/rbenv/versions/2.3.6
+rubysitearchprefix = $(rubylibprefix)/$(sitearch)
+rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
 exec_prefix = $(prefix)
-vendorarchhdrdir = $(sitearchincludedir)/$(RUBY_VERSION_NAME)/vendor_ruby
-sitearchhdrdir = $(sitearchincludedir)/$(RUBY_VERSION_NAME)/site_ruby
-rubyarchhdrdir = $(archincludedir)/$(RUBY_VERSION_NAME)
+vendorarchhdrdir = $(vendorhdrdir)/$(sitearch)
+sitearchhdrdir = $(sitehdrdir)/$(sitearch)
+rubyarchhdrdir = $(rubyhdrdir)/$(arch)
 vendorhdrdir = $(rubyhdrdir)/vendor_ruby
 sitehdrdir = $(rubyhdrdir)/site_ruby
 rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
-vendorarchdir = $(rubysitearchprefix)/vendor_ruby/$(ruby_version)
+vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20170909-13518-150acx0
-sitelibdir = $(DESTDIR)./.gem.20170909-13518-150acx0
-sitedir = $(DESTDIR)/usr/local/lib/site_ruby
-rubyarchdir = $(rubyarchprefix)/$(ruby_version)
+sitearchdir = $(DESTDIR)./.gem.20180306-17119-10uo2ni
+sitelibdir = $(DESTDIR)./.gem.20180306-17119-10uo2ni
+sitedir = $(rubylibprefix)/site_ruby
+rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
 sitearchincludedir = $(includedir)/$(sitearch)
 archincludedir = $(includedir)/$(arch)
 sitearchlibdir = $(libdir)/$(sitearch)
 archlibdir = $(libdir)/$(arch)
 ridir = $(datarootdir)/$(RI_BASE_NAME)
-mandir = $(prefix)/share/man
+mandir = $(datarootdir)/man
 localedir = $(datarootdir)/locale
 libdir = $(exec_prefix)/lib
 psdir = $(docdir)
 pdfdir = $(docdir)
 dvidir = $(docdir)
 htmldir = $(docdir)
-infodir = $(prefix)/share/info
+infodir = $(datarootdir)/info
 docdir = $(datarootdir)/doc/$(PACKAGE)
 oldincludedir = $(DESTDIR)/usr/include
 includedir = $(prefix)/include
-runstatedir = $(localstatedir)/run
-localstatedir = $(DESTDIR)/var
+localstatedir = $(prefix)/var
 sharedstatedir = $(prefix)/com
-sysconfdir = $(DESTDIR)/etc
+sysconfdir = $(prefix)/etc
 datadir = $(datarootdir)
 datarootdir = $(prefix)/share
-libexecdir = $(prefix)/lib/ruby2.3
+libexecdir = $(exec_prefix)/libexec
 sbindir = $(exec_prefix)/sbin
 bindir = $(exec_prefix)/bin
 archdir = $(rubyarchdir)
@@ -66,10 +65,10 @@ archdir = $(rubyarchdir)
 
 CC = gcc
 CXX = g++
-LIBRUBY = $(LIBRUBY_SO)
+LIBRUBY = $(LIBRUBY_A)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
-LIBRUBYARG_SHARED = -l$(RUBY_SO_NAME)
-LIBRUBYARG_STATIC = -l$(RUBY_SO_NAME)-static
+LIBRUBYARG_SHARED = -Wl,-rpath,$(libdir) -L$(libdir) 
+LIBRUBYARG_STATIC = -Wl,-rpath,$(libdir) -L$(libdir) -l$(RUBY_SO_NAME)-static
 empty =
 OUTFLAG = -o $(empty)
 COUTFLAG = -o $(empty)
@@ -81,12 +80,12 @@ optflags = -O3 -fno-fast-math
 debugflags = -ggdb3
 warnflags = -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat
 CCDLFLAGS = -fPIC
-CFLAGS   = $(CCDLFLAGS) -g -O2 -fdebug-prefix-map=/build/ruby2.3-8Td9HM/ruby2.3-2.3.3=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC $(ARCH_FLAG)
+CFLAGS   = $(CCDLFLAGS) $(cflags) $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS =  -Wdate-time -D_FORTIFY_SOURCE=2 $(DEFS) $(cppflags)
-CXXFLAGS = $(CCDLFLAGS) -g -O2 -fdebug-prefix-map=/build/ruby2.3-8Td9HM/ruby2.3-2.3.3=. -fstack-protector-strong -Wformat -Werror=format-security $(ARCH_FLAG)
-ldflags  = -L. -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic
+CPPFLAGS =  -I/home/kebus/.anyenv/envs/rbenv/versions/2.3.6/include  $(DEFS) $(cppflags)
+CXXFLAGS = $(CCDLFLAGS) $(cxxflags) $(ARCH_FLAG)
+ldflags  = -L. -L/home/kebus/.anyenv/envs/rbenv/versions/2.3.6/lib  -fstack-protector -rdynamic -Wl,-export-dynamic
 dldflags =  
 ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
@@ -95,17 +94,17 @@ LDSHAREDXX = $(CXX) -shared
 AR = ar
 EXEEXT = 
 
-RUBY_INSTALL_NAME = $(RUBY_BASE_NAME)2.3
-RUBY_SO_NAME = ruby-2.3
+RUBY_INSTALL_NAME = $(RUBY_BASE_NAME)
+RUBY_SO_NAME = ruby
 RUBYW_INSTALL_NAME = 
 RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
 
-arch = x86_64-linux-gnu
+arch = x86_64-linux
 sitearch = $(arch)
 ruby_version = 2.3.0
-ruby = $(bindir)/$(RUBY_BASE_NAME)2.3
+ruby = $(bindir)/$(RUBY_BASE_NAME)
 RUBY = $(ruby)
 ruby_headers = $(hdrdir)/ruby.h $(hdrdir)/ruby/ruby.h $(hdrdir)/ruby/defines.h $(hdrdir)/ruby/missing.h $(hdrdir)/ruby/intern.h $(hdrdir)/ruby/st.h $(hdrdir)/ruby/subst.h $(arch_hdrdir)/ruby/config.h
 
@@ -123,8 +122,8 @@ TOUCH = exit >
 
 preload = 
 
-libpath = . $(archlibdir)
-LIBPATH =  -L. -L$(archlibdir)
+libpath = . $(libdir)
+LIBPATH =  -L. -L$(libdir) -Wl,-rpath,$(libdir)
 DEFFILE = 
 
 CLEANFILES = mkmf.log
@@ -135,10 +134,10 @@ extout =
 extout_prefix = 
 target_prefix = /byebug
 LOCAL_LIBS = 
-LIBS = $(LIBRUBYARG_SHARED)  -lpthread -lgmp -ldl -lcrypt -lm   -lc
+LIBS =   -lpthread -lrt -lgmp -ldl -lcrypt -lm   -lc
 ORIG_SRCS = byebug.c breakpoint.c context.c threads.c locker.c
 SRCS = $(ORIG_SRCS) 
-OBJS = breakpoint.o byebug.o context.o locker.o threads.o
+OBJS = byebug.o breakpoint.o context.o threads.o locker.o
 HDRS = $(srcdir)/byebug.h
 TARGET = byebug
 TARGET_NAME = byebug
@@ -160,7 +159,7 @@ CLEANLIBS     = $(TARGET).so
 CLEANOBJS     = *.o  *.bak
 
 all:    $(DLLIB)
-static: $(STATIC_LIB) install-rb
+static: $(STATIC_LIB)
 .PHONY: all install static install-so install-rb
 .PHONY: clean clean-so clean-static clean-rb
 

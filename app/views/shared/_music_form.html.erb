@@ -1,21 +1,20 @@
 
-<div class="col-md-12">
-    <%= form_for(@music) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-    
-      <%= f.label :music_name , "曲名(必須)"%>
-      <%= f.text_field :music_name, class: 'form-control' , :placeholder => "曲名を入力してください" %>
-
-      <%= f.label :caption , "キャプション" %>
-      <%= f.text_area :caption, class: 'form-control', :placeholder => "説明文を入力してください"%>
-
-      <%= f.label :file , "楽曲ファイル(必須)"%>
-      <%= f.file_field :file, class: 'form-control', :placeholder => "10MBまで投稿できます",accept: 'audio/wav,audio/mp3'%>
-
-      <%= f.label :artwork , "アートワーク"%>
-      <%= f.file_field :artwork, class: 'form-control', :placeholder => "適当に圧縮されます",accept: 'image/jpg,image/jpeg,image/png'%>
-
-      <%= f.submit "アップロード", class: "btn btn-primary" %>
+<div class="col-md-6 col-md-offset-3">
+  <% if logged_in? %>
+  <div class = "slack_form">
+    <% url = "" %>
+    <% if Rails.env.development? %>
+    <% url = "/gmutest/slack"%>
+    <% elsif Rails.env.production? %>
+    <% url = "/godmusicuploader/slack"%>
     <% end %>
+    <%= form_tag(url, method: "post") do %>
+    <%= label_tag :channel, "投稿先" %>
+    <%= text_field_tag 'slack[channel]', '', placeholder: 'kmc-dtm' %>
+    <%= label_tag :content, "投稿内容" %>
+    <%= text_field_tag 'slack[content]' , '', class: 'form-control' %>
+    <%= submit_tag("投稿する") %>
+    <% end %> 
   </div>
-
+  <% end %>
+</div>

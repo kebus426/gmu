@@ -18,17 +18,33 @@
 	<%  else %>
 	<%= link_to "ブックマークから外す", delete_music_path(@music), method: :delete, class: "btn btn-lg btn-primary" %>
 	<% end %>
-      </div>
-      <div>
-	<%= render 'shared/slack_form' , object: @music%>
-      </div>
+      </div>  
     </div>
-    <% @comments.each do |comment| %>
-    <%= render 'shared/comment_show', object: comment %>
-    <% end %>
-    <%= form_for(@comment) do |comment| %>
-    <%= render 'shared/comment_form', object: comment %>
-    <% end %>
-
+    <div>
+      <% url = "" %>
+      <% if Rails.env.development? %>
+      <% url = "/gmutest/slack"%>
+      <% elsif Rails.env.production? %>
+      <% url = "/godmusicuploader/slack"%>
+      <% end %>
+      <%= form_tag(url, method: "post") do %>
+      <%= text_field_tag 'slack[id]', @music.id, class: "hidden" %>
+      <%= text_field_tag 'slack[author]', @music.user.user_name, class: "hidden" %>
+      <%= text_field_tag 'slack[caption]', @music.caption, class: "hidden" %>
+      <%= text_field_tag 'slack[music_name]', @music.music_name, class: "hidden" %>
+      <%= label_tag :channel, "投稿チャンネル",class: "col-md-12" %>
+      <%= text_field_tag 'slack[channel]', '', placeholder: 'kmc-dtm', class: "col-md-9 input-lg" %>
+      <%= submit_tag "投稿" , class: "btn btn-lg btn-primary", data: { confirm: "slackに投稿しますか？"}, class: "col-md-3 btn btn-lg btn-primary"%>
+      <% end %>
+    </div>
+    <div>
+      <label class="col-md-12">コメント<br></label>
+      <% @comments.each do |comment| %>
+      <%= render 'shared/comment_show', object: comment %>
+      <% end %>
+      <%= form_for(@comment) do |comment| %>
+      <%= render 'shared/comment_form', object: comment %>
+      <% end %>
+    </div>
   </div>
 </div>

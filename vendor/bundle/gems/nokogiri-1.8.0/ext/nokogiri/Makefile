@@ -12,53 +12,52 @@ NULLCMD = :
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /usr/include/ruby-2.3.0
+topdir = /home/kebus/.anyenv/envs/rbenv/versions/2.3.6/include/ruby-2.3.0
 hdrdir = $(topdir)
-arch_hdrdir = /usr/include/x86_64-linux-gnu/ruby-2.3.0
+arch_hdrdir = /home/kebus/.anyenv/envs/rbenv/versions/2.3.6/include/ruby-2.3.0/x86_64-linux
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/usr
-rubysitearchprefix = $(sitearchlibdir)/$(RUBY_BASE_NAME)
-rubyarchprefix = $(archlibdir)/$(RUBY_BASE_NAME)
+prefix = $(DESTDIR)/home/kebus/.anyenv/envs/rbenv/versions/2.3.6
+rubysitearchprefix = $(rubylibprefix)/$(sitearch)
+rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
 exec_prefix = $(prefix)
-vendorarchhdrdir = $(sitearchincludedir)/$(RUBY_VERSION_NAME)/vendor_ruby
-sitearchhdrdir = $(sitearchincludedir)/$(RUBY_VERSION_NAME)/site_ruby
-rubyarchhdrdir = $(archincludedir)/$(RUBY_VERSION_NAME)
+vendorarchhdrdir = $(vendorhdrdir)/$(sitearch)
+sitearchhdrdir = $(sitehdrdir)/$(sitearch)
+rubyarchhdrdir = $(rubyhdrdir)/$(arch)
 vendorhdrdir = $(rubyhdrdir)/vendor_ruby
 sitehdrdir = $(rubyhdrdir)/site_ruby
 rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
-vendorarchdir = $(rubysitearchprefix)/vendor_ruby/$(ruby_version)
+vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20170909-13518-1okm0ex
-sitelibdir = $(DESTDIR)./.gem.20170909-13518-1okm0ex
-sitedir = $(DESTDIR)/usr/local/lib/site_ruby
-rubyarchdir = $(rubyarchprefix)/$(ruby_version)
+sitearchdir = $(DESTDIR)./.gem.20180306-17119-k57tze
+sitelibdir = $(DESTDIR)./.gem.20180306-17119-k57tze
+sitedir = $(rubylibprefix)/site_ruby
+rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
 sitearchincludedir = $(includedir)/$(sitearch)
 archincludedir = $(includedir)/$(arch)
 sitearchlibdir = $(libdir)/$(sitearch)
 archlibdir = $(libdir)/$(arch)
 ridir = $(datarootdir)/$(RI_BASE_NAME)
-mandir = $(prefix)/share/man
+mandir = $(datarootdir)/man
 localedir = $(datarootdir)/locale
 libdir = $(exec_prefix)/lib
 psdir = $(docdir)
 pdfdir = $(docdir)
 dvidir = $(docdir)
 htmldir = $(docdir)
-infodir = $(prefix)/share/info
+infodir = $(datarootdir)/info
 docdir = $(datarootdir)/doc/$(PACKAGE)
 oldincludedir = $(DESTDIR)/usr/include
 includedir = $(prefix)/include
-runstatedir = $(localstatedir)/run
-localstatedir = $(DESTDIR)/var
+localstatedir = $(prefix)/var
 sharedstatedir = $(prefix)/com
-sysconfdir = $(DESTDIR)/etc
+sysconfdir = $(prefix)/etc
 datadir = $(datarootdir)
 datarootdir = $(prefix)/share
-libexecdir = $(prefix)/lib/ruby2.3
+libexecdir = $(exec_prefix)/libexec
 sbindir = $(exec_prefix)/sbin
 bindir = $(exec_prefix)/bin
 archdir = $(rubyarchdir)
@@ -66,10 +65,10 @@ archdir = $(rubyarchdir)
 
 CC = gcc
 CXX = g++
-LIBRUBY = $(LIBRUBY_SO)
+LIBRUBY = $(LIBRUBY_A)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
-LIBRUBYARG_SHARED = -l$(RUBY_SO_NAME)
-LIBRUBYARG_STATIC = -l$(RUBY_SO_NAME)-static
+LIBRUBYARG_SHARED = -Wl,-rpath,$(libdir) -L$(libdir) 
+LIBRUBYARG_STATIC = -Wl,-rpath,$(libdir) -L$(libdir) -l$(RUBY_SO_NAME)-static
 empty =
 OUTFLAG = -o $(empty)
 COUTFLAG = -o $(empty)
@@ -81,12 +80,12 @@ optflags = -O3 -fno-fast-math
 debugflags = -ggdb3
 warnflags = -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat
 CCDLFLAGS = -fPIC
-CFLAGS   = $(CCDLFLAGS) -g -O2 -fdebug-prefix-map=/build/ruby2.3-8Td9HM/ruby2.3-2.3.3=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC  -g -DXP_UNIX -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES $(ARCH_FLAG)
+CFLAGS   = $(CCDLFLAGS) $(cflags)  -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS = -DHAVE_XMLPARSEDOC -DHAVE_XSLTPARSESTYLESHEETDOC -DHAVE_EXSLTFUNCREGISTER -DHAVE_XMLHASFEATURE -DHAVE_XMLFIRSTELEMENTCHILD -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETPARSERSTRUCTUREDERRORS -I/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxslt/1.1.29/include -I/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/include/libxml2 -I/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/include/libxml2 -Wdate-time -D_FORTIFY_SOURCE=2 $(DEFS) $(cppflags) "-DNOKOGIRI_LIBXML2_PATH=\"/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"0001-Fix-comparison-with-root-node-in-xmlXPathCmpNodes.patch 0002-Fix-XPointer-paths-beginning-with-range-to.patch 0003-Disallow-namespace-nodes-in-XPointer-ranges.patch\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxslt/1.1.29\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"0001-Fix-heap-overread-in-xsltFormatNumberConversion.patch 0002-Check-for-integer-overflow-in-xsltAddTextString.patch\""
-CXXFLAGS = $(CCDLFLAGS) -g -O2 -fdebug-prefix-map=/build/ruby2.3-8Td9HM/ruby2.3-2.3.3=. -fstack-protector-strong -Wformat -Werror=format-security $(ARCH_FLAG)
-ldflags  = -L. -Wl,-z,relro -Wl,-z,now -fstack-protector -rdynamic -Wl,-export-dynamic
+CPPFLAGS = -DHAVE_XMLPARSEDOC -DHAVE_XSLTPARSESTYLESHEETDOC -DHAVE_EXSLTFUNCREGISTER -DHAVE_XMLHASFEATURE -DHAVE_XMLFIRSTELEMENTCHILD -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETPARSERSTRUCTUREDERRORS -I/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxslt/1.1.29/include -I/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/include/libxml2 -I/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/include/libxml2 -I/home/kebus/.anyenv/envs/rbenv/versions/2.3.6/include  $(DEFS) $(cppflags) "-DNOKOGIRI_LIBXML2_PATH=\"/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"0001-Fix-comparison-with-root-node-in-xmlXPathCmpNodes.patch 0002-Fix-XPointer-paths-beginning-with-range-to.patch 0003-Disallow-namespace-nodes-in-XPointer-ranges.patch\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxslt/1.1.29\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"0001-Fix-heap-overread-in-xsltFormatNumberConversion.patch 0002-Check-for-integer-overflow-in-xsltAddTextString.patch\""
+CXXFLAGS = $(CCDLFLAGS) $(cxxflags) $(ARCH_FLAG)
+ldflags  = -L. -L/home/kebus/.anyenv/envs/rbenv/versions/2.3.6/lib  -fstack-protector -rdynamic -Wl,-export-dynamic
 dldflags =  
 ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
@@ -95,17 +94,17 @@ LDSHAREDXX = $(CXX) -shared
 AR = ar
 EXEEXT = 
 
-RUBY_INSTALL_NAME = $(RUBY_BASE_NAME)2.3
-RUBY_SO_NAME = ruby-2.3
+RUBY_INSTALL_NAME = $(RUBY_BASE_NAME)
+RUBY_SO_NAME = ruby
 RUBYW_INSTALL_NAME = 
 RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
 
-arch = x86_64-linux-gnu
+arch = x86_64-linux
 sitearch = $(arch)
 ruby_version = 2.3.0
-ruby = $(bindir)/$(RUBY_BASE_NAME)2.3
+ruby = $(bindir)/$(RUBY_BASE_NAME)
 RUBY = $(ruby)
 ruby_headers = $(hdrdir)/ruby.h $(hdrdir)/ruby/ruby.h $(hdrdir)/ruby/defines.h $(hdrdir)/ruby/missing.h $(hdrdir)/ruby/intern.h $(hdrdir)/ruby/st.h $(hdrdir)/ruby/subst.h $(arch_hdrdir)/ruby/config.h
 
@@ -123,8 +122,8 @@ TOUCH = exit >
 
 preload = 
 
-libpath = . $(archlibdir) /home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/lib /home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxslt/1.1.29/lib
-LIBPATH =  -L. -L$(archlibdir) -L/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/lib -L/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxslt/1.1.29/lib
+libpath = . $(libdir) /home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/lib /home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxslt/1.1.29/lib /usr/lib/x86_64-linux-gnu
+LIBPATH =  -L. -L$(libdir) -Wl,-rpath,$(libdir) -L/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/lib -Wl,-rpath,/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/lib -L/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxslt/1.1.29/lib -Wl,-rpath,/home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxslt/1.1.29/lib -L/usr/lib/x86_64-linux-gnu -Wl,-rpath,/usr/lib/x86_64-linux-gnu
 DEFFILE = 
 
 CLEANFILES = mkmf.log
@@ -135,10 +134,10 @@ extout =
 extout_prefix = 
 target_prefix = /nokogiri
 LOCAL_LIBS = 
-LIBS = $(LIBRUBYARG_SHARED) /home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxslt/1.1.29/lib/libexslt.a -lm -ldl -llzma -lz /home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/lib/libxml2.a /home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxslt/1.1.29/lib/libxslt.a -ldl -lm -llzma -lz /home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc 
+LIBS =  /home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxslt/1.1.29/lib/libexslt.a -lm -ldl -llzma -lz /home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/lib/libxml2.a /home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxslt/1.1.29/lib/libxslt.a -ldl -lm -llzma -lz /home/kebus/private_html/rails/gmu/vendor/bundle/gems/nokogiri-1.8.0/ports/x86_64-pc-linux-gnu/libxml2/2.9.4/lib/libxml2.a -llzma -lpthread -lrt -lgmp -ldl -lcrypt -lm   -lc 
 ORIG_SRCS = xml_sax_parser.c xml_sax_push_parser.c xml_libxml2_hacks.c xml_xpath_context.c html_entity_lookup.c xml_dtd.c xml_text.c xml_processing_instruction.c xml_node_set.c xml_namespace.c html_document.c xml_attribute_decl.c xml_entity_decl.c xml_document_fragment.c xml_node.c xml_sax_parser_context.c html_sax_parser_context.c xml_element_content.c nokogiri.c xml_encoding_handler.c xml_io.c xml_syntax_error.c xml_relax_ng.c html_sax_push_parser.c html_element_description.c xml_cdata.c xml_entity_reference.c xml_document.c xml_reader.c xml_attr.c xml_comment.c xml_element_decl.c xslt_stylesheet.c xml_schema.c
 SRCS = $(ORIG_SRCS) 
-OBJS = html_document.o html_element_description.o html_entity_lookup.o html_sax_parser_context.o html_sax_push_parser.o nokogiri.o xml_attr.o xml_attribute_decl.o xml_cdata.o xml_comment.o xml_document.o xml_document_fragment.o xml_dtd.o xml_element_content.o xml_element_decl.o xml_encoding_handler.o xml_entity_decl.o xml_entity_reference.o xml_io.o xml_libxml2_hacks.o xml_namespace.o xml_node.o xml_node_set.o xml_processing_instruction.o xml_reader.o xml_relax_ng.o xml_sax_parser.o xml_sax_parser_context.o xml_sax_push_parser.o xml_schema.o xml_syntax_error.o xml_text.o xml_xpath_context.o xslt_stylesheet.o
+OBJS = xml_sax_parser.o xml_sax_push_parser.o xml_libxml2_hacks.o xml_xpath_context.o html_entity_lookup.o xml_dtd.o xml_text.o xml_processing_instruction.o xml_node_set.o xml_namespace.o html_document.o xml_attribute_decl.o xml_entity_decl.o xml_document_fragment.o xml_node.o xml_sax_parser_context.o html_sax_parser_context.o xml_element_content.o nokogiri.o xml_encoding_handler.o xml_io.o xml_syntax_error.o xml_relax_ng.o html_sax_push_parser.o html_element_description.o xml_cdata.o xml_entity_reference.o xml_document.o xml_reader.o xml_attr.o xml_comment.o xml_element_decl.o xslt_stylesheet.o xml_schema.o
 HDRS = $(srcdir)/xml_syntax_error.h $(srcdir)/xml_processing_instruction.h $(srcdir)/xml_relax_ng.h $(srcdir)/xml_text.h $(srcdir)/html_element_description.h $(srcdir)/xml_comment.h $(srcdir)/xml_node_set.h $(srcdir)/xml_attr.h $(srcdir)/xml_document_fragment.h $(srcdir)/xml_cdata.h $(srcdir)/nokogiri.h $(srcdir)/xml_sax_parser.h $(srcdir)/xslt_stylesheet.h $(srcdir)/html_entity_lookup.h $(srcdir)/xml_attribute_decl.h $(srcdir)/xml_entity_reference.h $(srcdir)/xml_xpath_context.h $(srcdir)/xml_document.h $(srcdir)/xml_dtd.h $(srcdir)/xml_schema.h $(srcdir)/xml_sax_push_parser.h $(srcdir)/xml_entity_decl.h $(srcdir)/xml_element_decl.h $(srcdir)/html_document.h $(srcdir)/xml_reader.h $(srcdir)/xml_sax_parser_context.h $(srcdir)/xml_node.h $(srcdir)/html_sax_parser_context.h $(srcdir)/xml_encoding_handler.h $(srcdir)/html_sax_push_parser.h $(srcdir)/xml_libxml2_hacks.h $(srcdir)/xml_element_content.h $(srcdir)/xml_namespace.h $(srcdir)/xml_io.h
 TARGET = nokogiri
 TARGET_NAME = nokogiri
@@ -160,7 +159,7 @@ CLEANLIBS     = $(TARGET).so
 CLEANOBJS     = *.o  *.bak
 
 all:    $(DLLIB)
-static: $(STATIC_LIB) install-rb
+static: $(STATIC_LIB)
 .PHONY: all install static install-so install-rb
 .PHONY: clean clean-so clean-static clean-rb
 

@@ -2,7 +2,7 @@
 <h1>ユーザー一覧</h1>
 
 <div class="col-mid-3">
-<%= form_tag("/user_search", method: "get") do %>
+<%= form_tag("/godmusicuploader/user_search", method: "get") do %>
 <%= label_tag(:word, "ユーザー名") %>
 <%@search_word = '' if @search_word == nil%>
   <%= text_field_tag :word, @search_word %>

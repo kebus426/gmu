@@ -17,9 +17,15 @@
 !/log/.keep
 !/tmp/.keep
 
+/app/assets/token.txt
+
 /node_modules
 /yarn-error.log
 
 .byebug_history
 
+token.txt
+
 /public/uploads/*
+
+/vendor/bundle/*

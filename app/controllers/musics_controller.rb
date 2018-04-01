@@ -3,6 +3,8 @@ class MusicsController < ApplicationController
 
   def create
     @music = current_user.musics.build(music_params)
+    puts @music[:music_name]
+    puts @music[:file]
     if @music.valid? && @music.save
       flash[:success] = "曲を投稿しました！"
       redirect_to root_url
@@ -45,6 +47,6 @@ class MusicsController < ApplicationController
   private
 
     def music_params
-      params.require(:music).permit(:music_name, :file, :caption,:artwork)
+      params.require(:music).permit(:file, :music_name, :caption,:artwork)
     end
 end

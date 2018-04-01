@@ -2,7 +2,7 @@
 <h1>曲一覧</h1>
 <div class = "row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_tag("/music_search", method: "get") do %>
+    <%= form_tag("/godmusicuploader/music_search", method: "get") do %>
     <%= label_tag(:music_name, "曲名") %>
     <%@search_music = '' if @search_music == nil%>
     <%= text_field_tag :music_name, @search_word %>

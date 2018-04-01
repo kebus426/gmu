@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 #  get    '/login',   to: 'sessions#new'
 #  post   '/login',   to: 'sessions#create'
 #  delete '/logout',  to: 'sessions#destroy'
-
+   get '/slack/', to: 'slack#show'
    post '/slack', to: 'slack#post'
   
   resources :musics, only: [:create, :destroy, :new, :show, :index] do

@@ -10,8 +10,9 @@
   <%= label_tag :channel, "投稿先" %>
   <%= text_field_tag 'slack[channel]', '', placeholder: 'kmc-dtm' %>
   <%= label_tag :content, "投稿内容" %>
-  <%= text_field_tag 'slack[content]' , '', class: 'form-control' %>
-  <%= submit_tag("投稿する") %>
+  <%= text_field_tag 'slack[content]' , "神曲だよ！聞いてね！\n" + @music_path, class: 'form-control' %>
+  <%= text_field_tag 'slack[url]', @music_path, class: "hidden" %>
+  <%= submit_tag "投稿する", class: "btn btn-primary" %>
   <% end %> 
 </div>
 <% end %>

@@ -12,53 +12,52 @@ NULLCMD = :
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /usr/include/ruby-2.3.0
+topdir = /home/kebus/.anyenv/envs/rbenv/versions/2.3.1/include/ruby-2.3.0
 hdrdir = $(topdir)
-arch_hdrdir = /usr/include/x86_64-linux-gnu/ruby-2.3.0
+arch_hdrdir = /home/kebus/.anyenv/envs/rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-linux
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/usr
-rubysitearchprefix = $(sitearchlibdir)/$(RUBY_BASE_NAME)
-rubyarchprefix = $(archlibdir)/$(RUBY_BASE_NAME)
+prefix = $(DESTDIR)/home/kebus/.anyenv/envs/rbenv/versions/2.3.1
+rubysitearchprefix = $(rubylibprefix)/$(sitearch)
+rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
 exec_prefix = $(prefix)
-vendorarchhdrdir = $(sitearchincludedir)/$(RUBY_VERSION_NAME)/vendor_ruby
-sitearchhdrdir = $(sitearchincludedir)/$(RUBY_VERSION_NAME)/site_ruby
-rubyarchhdrdir = $(archincludedir)/$(RUBY_VERSION_NAME)
+vendorarchhdrdir = $(vendorhdrdir)/$(sitearch)
+sitearchhdrdir = $(sitehdrdir)/$(sitearch)
+rubyarchhdrdir = $(rubyhdrdir)/$(arch)
 vendorhdrdir = $(rubyhdrdir)/vendor_ruby
 sitehdrdir = $(rubyhdrdir)/site_ruby
 rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
-vendorarchdir = $(rubysitearchprefix)/vendor_ruby/$(ruby_version)
+vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20180220-31259-1skngeg
-sitelibdir = $(DESTDIR)./.gem.20180220-31259-1skngeg
-sitedir = $(DESTDIR)/usr/local/lib/site_ruby
-rubyarchdir = $(rubyarchprefix)/$(ruby_version)
+sitearchdir = $(DESTDIR)./.gem.20180306-19558-1yfoxyi
+sitelibdir = $(DESTDIR)./.gem.20180306-19558-1yfoxyi
+sitedir = $(rubylibprefix)/site_ruby
+rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
 sitearchincludedir = $(includedir)/$(sitearch)
 archincludedir = $(includedir)/$(arch)
 sitearchlibdir = $(libdir)/$(sitearch)
 archlibdir = $(libdir)/$(arch)
 ridir = $(datarootdir)/$(RI_BASE_NAME)
-mandir = $(prefix)/share/man
+mandir = $(datarootdir)/man
 localedir = $(datarootdir)/locale
 libdir = $(exec_prefix)/lib
 psdir = $(docdir)
 pdfdir = $(docdir)
 dvidir = $(docdir)
 htmldir = $(docdir)
-infodir = $(prefix)/share/info
+infodir = $(datarootdir)/info
 docdir = $(datarootdir)/doc/$(PACKAGE)
 oldincludedir = $(DESTDIR)/usr/include
 includedir = $(prefix)/include
-runstatedir = $(localstatedir)/run
-localstatedir = $(DESTDIR)/var
+localstatedir = $(prefix)/var
 sharedstatedir = $(prefix)/com
-sysconfdir = $(DESTDIR)/etc
+sysconfdir = $(prefix)/etc
 datadir = $(datarootdir)
 datarootdir = $(prefix)/share
-libexecdir = $(prefix)/lib/ruby2.3
+libexecdir = $(exec_prefix)/libexec
 sbindir = $(exec_prefix)/sbin
 bindir = $(exec_prefix)/bin
 archdir = $(rubyarchdir)
@@ -66,10 +65,10 @@ archdir = $(rubyarchdir)
 
 CC = gcc
 CXX = g++
-LIBRUBY = $(LIBRUBY_SO)
+LIBRUBY = $(LIBRUBY_A)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
-LIBRUBYARG_SHARED = -l$(RUBY_SO_NAME)
-LIBRUBYARG_STATIC = -l$(RUBY_SO_NAME)-static
+LIBRUBYARG_SHARED = -Wl,-R$(libdir) -L$(libdir) 
+LIBRUBYARG_STATIC = -Wl,-R$(libdir) -L$(libdir) -l$(RUBY_SO_NAME)-static
 empty =
 OUTFLAG = -o $(empty)
 COUTFLAG = -o $(empty)
@@ -79,13 +78,13 @@ cflags   =  $(optflags) $(debugflags) $(warnflags)
 cxxflags =  $(optflags) $(debugflags) $(warnflags)
 optflags = -O3 -fno-fast-math
 debugflags = -ggdb3
-warnflags = -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat
+warnflags = -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wno-maybe-uninitialized
 CCDLFLAGS = -fPIC
 CFLAGS   = $(CCDLFLAGS)  -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
 CPPFLAGS = -DRUBY_EXTCONF_H=\"$(RUBY_EXTCONF_H)\"  -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6
-CXXFLAGS = $(CCDLFLAGS) -g -O2 -fdebug-prefix-map=/build/ruby2.3-KwDbD6/ruby2.3-2.3.6=. -fstack-protector-strong -Wformat -Werror=format-security $(ARCH_FLAG)
+CXXFLAGS = $(CCDLFLAGS) $(cxxflags) $(ARCH_FLAG)
 ldflags  =  -lMagickWand-6.Q16 -lMagickCore-6.Q16
 dldflags =  
 ARCH_FLAG = 
@@ -95,17 +94,17 @@ LDSHAREDXX = $(CXX) -shared
 AR = ar
 EXEEXT = 
 
-RUBY_INSTALL_NAME = $(RUBY_BASE_NAME)2.3
-RUBY_SO_NAME = ruby-2.3
+RUBY_INSTALL_NAME = $(RUBY_BASE_NAME)
+RUBY_SO_NAME = ruby
 RUBYW_INSTALL_NAME = 
 RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
 
-arch = x86_64-linux-gnu
+arch = x86_64-linux
 sitearch = $(arch)
 ruby_version = 2.3.0
-ruby = $(bindir)/$(RUBY_BASE_NAME)2.3
+ruby = $(bindir)/$(RUBY_BASE_NAME)
 RUBY = $(ruby)
 ruby_headers = $(hdrdir)/ruby.h $(hdrdir)/ruby/ruby.h $(hdrdir)/ruby/defines.h $(hdrdir)/ruby/missing.h $(hdrdir)/ruby/intern.h $(hdrdir)/ruby/st.h $(hdrdir)/ruby/subst.h Makefile rmagick.h $(RUBY_EXTCONF_H)
 
@@ -123,8 +122,8 @@ TOUCH = exit >
 
 preload = 
 
-libpath = . $(archlibdir)
-LIBPATH =  -L. -L$(archlibdir)
+libpath = . $(libdir)
+LIBPATH =  -L. -L$(libdir) -Wl,-R$(libdir)
 DEFFILE = 
 
 CLEANFILES = mkmf.log
@@ -135,10 +134,10 @@ extout =
 extout_prefix = 
 target_prefix = 
 LOCAL_LIBS =  -lMagickWand-6.Q16 -lMagickCore-6.Q16
-LIBS = $(LIBRUBYARG_SHARED)  -lpthread -lgmp -ldl -lcrypt -lm   -lc
+LIBS =   -lpthread -lgmp -ldl -lcrypt -lm   -lc
 ORIG_SRCS = rmagick.c rmfill.c rmenum.c rmmain.c rmimage.c rmpixel.c rmilist.c rminfo.c rmmontage.c rmdraw.c rmstruct.c rmutil.c
 SRCS = $(ORIG_SRCS) 
-OBJS = rmagick.o rmdraw.o rmenum.o rmfill.o rmilist.o rmimage.o rminfo.o rmmain.o rmmontage.o rmpixel.o rmstruct.o rmutil.o
+OBJS = rmagick.o rmfill.o rmenum.o rmmain.o rmimage.o rmpixel.o rmilist.o rminfo.o rmmontage.o rmdraw.o rmstruct.o rmutil.o
 HDRS = $(srcdir)/rmagick.h $(srcdir)/extconf.h
 TARGET = RMagick2
 TARGET_NAME = RMagick2
@@ -160,7 +159,7 @@ CLEANLIBS     = $(TARGET).so
 CLEANOBJS     = *.o  *.bak
 
 all:    $(DLLIB)
-static: $(STATIC_LIB)
+static: $(STATIC_LIB) install-rb
 .PHONY: all install static install-so install-rb
 .PHONY: clean clean-so clean-static clean-rb
 

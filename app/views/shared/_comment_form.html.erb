@@ -1,7 +1,6 @@
 <% if logged_in? %>
 <div class = "comment_form">
-  <%= object.label :comment, "コメント" %>
-  <%= object.text_field :content, class: 'form-control' %>
-  <%= object.submit "アップロード", class: "btn btn-primary" %>
+  <%= object.text_field :content, class: 'col-md-9 input-lg' %>
+  <%= object.submit "投稿", class: "col-md-3 btn btn-lg btn-primary", data: { confirm: "コメントを投稿しますか？"} %>
   <% end %>
 </div>
