@@ -1,20 +1,16 @@
-
 <div class="col-md-6 col-md-offset-3">
-  <% if logged_in? %>
-  <div class = "slack_form">
-    <% url = "" %>
-    <% if Rails.env.development? %>
-    <% url = "/gmutest/slack"%>
-    <% elsif Rails.env.production? %>
-    <% url = "/godmusicuploader/slack"%>
+    <%= form_for(@music) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+    
+      <%= f.label :music_name %>
+      <%= f.text_field :music_name, class: 'form-control' %>
+
+      <%= f.label :caption %>
+      <%= f.text_area :caption, class: 'form-control'%>
+
+      <%= f.label :file %>
+      <%= f.file_field :file, class: 'form-control'%>
+
+      <%= f.submit "アップロード", class: "btn btn-primary" %>
     <% end %>
-    <%= form_tag(url, method: "post") do %>
-    <%= label_tag :channel, "投稿先" %>
-    <%= text_field_tag 'slack[channel]', '', placeholder: 'kmc-dtm' %>
-    <%= label_tag :content, "投稿内容" %>
-    <%= text_field_tag 'slack[content]' , '', class: 'form-control' %>
-    <%= submit_tag("投稿する") %>
-    <% end %> 
-  </div>
-  <% end %>
 </div>
