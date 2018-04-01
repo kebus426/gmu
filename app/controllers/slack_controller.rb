@@ -13,8 +13,8 @@ class SlackController < ApplicationController
   def post
     param = slack_params
     url = 'https://slack.com/api/chat.postMessage'
-    file = File.open("token.txt","r") #token読み出し
-    token = file.read.strip()
+    token_file = File.join(Rails.root, 'app','token.txt') #token読み出し
+    token = File.read(token_file).strip()
     #url = url.gsub('<TOKEN>',TOKEN)
     uri  = URI.parse(url)
     #param[:channel] = 'kmc-dtm' if param[:channel] == nil or param[:channel] == ""
