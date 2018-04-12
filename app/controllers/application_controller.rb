@@ -14,24 +14,31 @@ class ApplicationController < ActionController::Base
         redirect_to "home/index"
       end
     end
+  
+  def http_remote_user
+    request.env['REMOTE_USER'] || request.env['HTTP_REMOTE_USER'] || request.headers['HTTP_X_KMC_REMOTE_USER']
+  end
 
   def search_id
-    @user = User.find_by(user_name: request.env["HTTP_X_KMC_REMOTE_USER"])
+    @user = User.find_by(user_name: http_remote_user)
     if @user == nil
-      puts "user:"
-      puts request.env["HTTP_X_KMC_REMOTE_USER"]
-      @user = User.new(user_name: request.env["HTTP_X_KMC_REMOTE_USER"])
-      if @user.valid? &&  @user.save
+      logger.debug "user:"
+      for txt in request.headers do
+      logger.debug txt
+      end
+      logger.debug http_remote_user
+      @user = User.new(user_name: http_remote_user)
+      if @user.valid? && @user.save
         log_in @user
         flash[:success] = "Welcome to God Music Uploader!"
-        puts "user"
+        logger.debug "user"
         redirect_to @user
       else
-        puts "home"
+        logger.debug "error"
         head :forbidden
       end
     else
-      puts "niljanaiyo"
+      logger.debug "niljanaiyo"
       log_in(@user)
     end
   end

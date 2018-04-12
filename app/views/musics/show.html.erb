@@ -9,7 +9,7 @@
 	<div style="text-align:left"><%= image_tag(@music.artwork.url)%></div>
 	<% end %>
 	<p><%= @music.caption %></p>
-	<div><%= audio_tag(@music.file.url,:controls => true) %></div>
+	<div><%= audio_tag("/godmusicuploader"+ @music.file.url,:controls => true) %></div>
         <p>投稿日：<%= @music.created_at %></p>
       </div>
       <div>
