@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
     logger.debug "user:"
     logger.debug request.headers['X-KMC-REMOTE-USER']
     if @user == nil
+      logger.debug "user:"
       logger.debug http_remote_user
       @user = User.new(user_name: http_remote_user)
       if @user.valid? && @user.save

@@ -9,8 +9,11 @@
       <%= f.text_area :caption, class: 'form-control'%>
 
       <%= f.label :file %>
-      <%= f.file_field :file, class: 'form-control'%>
+      <%= f.file_field :file, class: 'form-control', accept: 'audio/mp3,audio/wave'%>
 
+      <%= f.label :artwork %>
+      <%= f.file_field :artwork, class: 'form-control', accept: 'image/jpeg,image/png'%>
+      
       <%= f.submit "アップロード", class: "btn btn-primary" %>
     <% end %>
 </div>

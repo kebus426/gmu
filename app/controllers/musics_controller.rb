@@ -3,8 +3,6 @@ class MusicsController < ApplicationController
 
   def create
     @music = current_user.musics.build(music_params)
-    puts @music[:music_name]
-    puts @music[:file]
     if @music.valid? && @music.save
       flash[:success] = "曲を投稿しました！"
       redirect_to root_url
@@ -14,7 +12,16 @@ class MusicsController < ApplicationController
   end
 
   def destroy
-    #曲削除する処理を書く チュートリアルにもあった
+    @music = Music.find(params[:id])
+    @user = @music.user
+    if(current_user.user_name == @user.user_name)
+      @music.destroy
+      flash[:success] = "曲を削除しました"
+      redirect_to user_path(@user)
+    else
+      flash[:danger] = "曲を削除できませんでした"
+      redirect_to user_path(@user)
+    end
   end
 
   def show

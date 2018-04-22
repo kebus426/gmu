@@ -6,7 +6,7 @@
 	<div style="text-align:left"><%= link_to @music.user.user_name, user_path(@music.user_id) %></div>	
 	<% if @music.artwork.url.nil? %>
 	<% else %>
-	<div style="text-align:left"><%= image_tag(@music.artwork.url)%></div>
+	<div style="text-align:left"><%= image_tag("/godmusicuploader" + @music.artwork.url)%></div>
 	<% end %>
 	<p><%= @music.caption %></p>
 	<div><%= audio_tag("/godmusicuploader"+ @music.file.url,:controls => true) %></div>

@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @musics = @user.musics.paginate(page: params[:page])
+    @musics = @user.musics.paginate(page: params[:page], :per_page => 10)
   end
 
   def new
