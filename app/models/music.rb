@@ -8,8 +8,8 @@ class Music < ApplicationRecord
   validates :caption, length: { maximum: 140}
   validates :music_name, presence: true, uniqueness: false
   
-  has_many :favorites, class_name: "Favorite", foreign_key: :music_id
+  has_many :favorites, class_name: "Favorite", foreign_key: :music_id, dependent: :destroy
   has_many :faved_users, through: :favorites
 
-  has_many :comments, dependent: :destroy
+  has_many :comments, dependent: :delete_all
 end

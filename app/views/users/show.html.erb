@@ -7,12 +7,26 @@
       </h1>
     </section>
   </aside>
-  <div class="col-md-8">
+  <div class="col-md-offset-2 col-md-6">
     <% if @user.musics.any? %>
-      <h3>Musics (<%= @user.musics.count %>)</h3>
+    <h3>Musics (<%= @user.musics.count %>)</h3>
+    <%= will_paginate @musics%>
+      <% if current_user.user_name == @user.user_name %>
+          <% @musics.each do |music|%>
+	  <table>
+            <tr>
+	      <td class="col-md-8"><%=link_to music.music_name, music_path(music.id) %>
+		<br><%= music.created_at%>
+	      </td>
+	      <td class="col-md-4"><%= link_to "削除する", music_path(music), method: :delete, class: "btn btn-lg btn-primary", data: {confirm: "本当に削除しますか？"} %></td>
+	    </tr>
+	  </table>
+	  <% end %>
+      <% else %>
       <ol class="musics">
         <%= render @musics %>
       </ol>
+      <% end %>
       <%= will_paginate @musics %>
     <% end %>
   </div>

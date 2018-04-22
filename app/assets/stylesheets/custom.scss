@@ -57,6 +57,25 @@ textarea {
   margin-top: 45px;
   @include box_sizing;
 }
+/* table */
+table{
+    border: solid 1px;
+    border-width: 0px 0px 1px 0px;
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+
+.separate {
+	border-collapse: separate;
+	border: 1px solid gray;
+}
+
+tr {
+    border: solid 1px;
+    border-width: 0px 0px 1px 0px;
+}
+
+
 
 /* typography */
 
