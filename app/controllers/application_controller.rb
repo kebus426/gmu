@@ -16,16 +16,14 @@ class ApplicationController < ActionController::Base
     end
   
   def http_remote_user
-    request.env['REMOTE_USER'] || request.env['HTTP_REMOTE_USER'] || request.headers['HTTP_X_KMC_REMOTE_USER']
+    request.env['REMOTE_USER'] || request.env['HTTP_REMOTE_USER'] || request.headers['HTTP_X_KMC_REMOTE_USER'] 
   end
 
   def search_id
     @user = User.find_by(user_name: http_remote_user)
+    logger.debug "user:"
+    logger.debug request.headers['X-KMC-REMOTE-USER']
     if @user == nil
-      logger.debug "user:"
-      for txt in request.headers do
-      logger.debug txt
-      end
       logger.debug http_remote_user
       @user = User.new(user_name: http_remote_user)
       if @user.valid? && @user.save
