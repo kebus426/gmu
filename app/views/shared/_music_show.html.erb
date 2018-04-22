@@ -3,7 +3,7 @@
       <div class= "musics">
 	<% @musics.each do |music|%>
 	<div class= "box">
-	    <p><%= link_to music.music_name, music_path(music.id) %></p>
+	  <p><%= link_to music.music_name, music_path(music.id) %></p>
 	    <p><%= link_to music.user.user_name, user_path(music.user.id) %></p>
 	    <% logger.debug music.file.url %>
 	    <p><%= audio_tag("/godmusicuploader" + music.file.url, :controls => true)%></p>
