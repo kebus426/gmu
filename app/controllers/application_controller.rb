@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
   
   def http_remote_user
-    request.env['REMOTE_USER'] || request.env['HTTP_REMOTE_USER'] || request.headers['HTTP_X_KMC_REMOTE_USER'] 
+    request.env['REMOTE_USER'] || request.headers['X-Forwarded-User'] || request.headers['HTTP_X_KMC_REMOTE_USER'] 
   end
 
   def search_id
