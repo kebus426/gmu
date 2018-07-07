@@ -29,3 +29,11 @@ token.txt
 /public/uploads/*
 
 /vendor/bundle/*
+
+/public/assets/*
+/public/godmusicuploader/assets/*
+
+.ruby-version
+
+# Ignore encrypted secrets key file.
+config/secrets.yml.key
